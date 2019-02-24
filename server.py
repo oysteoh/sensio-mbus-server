@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import logging
-from socketserver import TCPServer
+from SocketServer import TCPServer
 from collections import defaultdict
 
 from umodbus import conf
@@ -17,15 +17,12 @@ config = {
     'address-range': list(range(0, 10))
 }
 
-# Add stream handler to logger 'uModbus'.
 log_to_stream(level=config['log_level'])
 
-# Enable values to be signed (default is False).
 conf.SIGNED_VALUES = config['signed_values']
 
 TCPServer.allow_reuse_address = True
 app = get_server(TCPServer, (config['ip-address'], config['port']), RequestHandler)
-
 
 @app.route(slave_ids=[1], function_codes=[3, 4], addresses=config['address-range'])
 def read_data_store(slave_id, function_code, address):
