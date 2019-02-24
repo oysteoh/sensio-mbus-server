@@ -1,6 +1,10 @@
 # sensio-mbus-server
 My implementation of a modbus server to communicate with Sensio 
 
+For now, this is i very simple server, reading (and writing) to a file. The values is stored on one line currently separated by a semi-colon. The address you query is indices when making an array out of the data in the file. 
+
+I have different sensors on my raspberry which writes to this file - and the modbus server exposing these data to my Sensio controller.
+
 #### steps to run as service on your raspberry pi
 
 1. Log in to your raspberry 
