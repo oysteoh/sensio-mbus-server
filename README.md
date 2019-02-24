@@ -37,4 +37,4 @@ The addresses exposed through my modbus interface from 0-10 would reflect indici
    - Check status ````sudo systemctl status mbus.service```
    - If everything looks fine, enable the service with ```sudo systemctl enable mbus.service```
    
-No you should be good to go !
+Now you should be good to go !
