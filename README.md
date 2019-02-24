@@ -14,7 +14,7 @@ I have different sensors on my raspberry which writes to this file - and the mod
    - Most important
        - Change ip-address with your raspberry pi's address
        - Location of your data-file needs to be provided (default is fine)
-5. Create data-file at your specified location and add some random data like <br />
+5. Create data-file at your specified location and add some random data to later on verify connection with sensio <br />
 ```1;20;300;45;53;62;71;865;924;1024``` <br />
 The addresses exposed through my modbus interface from 0-10 would reflect indicies in this file when splitted on the separator specified in the config. 
 6. Install uModbus package needed ```pip install uModbus```
