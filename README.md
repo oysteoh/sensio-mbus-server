@@ -16,7 +16,8 @@ The addresses exposed through my modbus interface from 0-10 would reflect indici
 6. Install uModbus package needed ```pip install uModbus```
 7. Make the package run as a service on your raspberry
    - ```sudo vim /lib/systemd/system/mbus.service```
-   -  ```
+   -  Add following to configure your service
+      ```
       [Unit]
       Description=Modbus server running as a service
       After=network.target
@@ -32,3 +33,8 @@ The addresses exposed through my modbus interface from 0-10 would reflect indici
       [Install]
       WantedBy=multi-user.target
       ```
+   - Verify service can be started ```sudo systemctl start mbus.service```
+   - Check status ````sudo systemctl status mbus.service```
+   - If everything looks fine, enable the service with ```sudo systemctl enable mbus.service```
+   
+No you should be good to go !
