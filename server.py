@@ -39,11 +39,11 @@ def write_data_store(slave_id, function_code, address, value):
 
 def _read_file():
     with open(config['data-file'], "r") as data_file:
-        return data_file.read().split(config['value_separator'])   
+        return data_file.read().split(config['value-separator'])   
      
 def _write_file(data):
     with open(config['data-file'], "w") as data_file:
-        data_file.write(config['value_separator'].join(map(str, data)))
+        data_file.write(config['value-separator'].join(map(str, data)))
 
 if __name__ == '__main__':
     app.serve_forever()
