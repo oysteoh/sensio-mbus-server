@@ -13,8 +13,9 @@ config = {
     'ip-address': '192.168.1.122',
     'port': 1502,
     'data-file': '/home/pi/log_file.txt',
+    'tibber-data-file': '/home/pi/tibber-live-measurement.txt',
     'value-separator': " ",
-    'address-range': list(range(0, 10))
+    'address-range': list(range(100, 1000))
 }
 
 log_to_stream(level=config['log_level'])
@@ -27,18 +28,27 @@ app = get_server(TCPServer, (config['ip-address'], config['port']), RequestHandl
 @app.route(slave_ids=[1], function_codes=[3, 4], addresses=config['address-range'])
 def read_data_store(slave_id, function_code, address):
     """" Return value of address. """
-    data = _read_file()
-    return int(data[address])
+    str_address = str(address)
+    source_type = int(str_address[0])
+    source_address = int(str_address[1:])
+    if source_type == 1:
+        data = _read_file(config['data-file'])
+        return int(data[source_address])
+    elif source_type == 2:
+        data = _read_file(config['tibber-data-file'])
+        return int(data[source_address])
+    else:
+        raise Exception("Not a valid address")
 
 @app.route(slave_ids=[1], function_codes=[6, 16], addresses=config['address-range'])
 def write_data_store(slave_id, function_code, address, value):
     """" Set value for address. """
-    data = _read_file()    
+    data = _read_file(config['data-file'])    
     data[address] = value
     _write_file(data)
 
-def _read_file():
-    with open(config['data-file'], "r") as data_file:
+def _read_file(data_file):
+    with open(data_file, "r") as data_file:
         return data_file.read().split(config['value-separator'])   
      
 def _write_file(data):
