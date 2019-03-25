@@ -12,8 +12,8 @@ config = {
     'signed_values': True,
     'ip-address': '192.168.1.122',
     'port': 1502,
-    'data-file': '/home/pi/data.txt',
-    'value-separator': ";",
+    'data-file': '/home/pi/log_file.txt',
+    'value-separator': " ",
     'address-range': list(range(0, 10))
 }
 
